@@ -19,3 +19,21 @@ app.listen(PORT, () =>
     console.log(`Example app listening at http://localhost:${PORT}`)
 );
 
+//Create public site w/ Express
+app.get('/notes', (req, res) =>
+    res.sendFile(path.join(__dirname, 'public/notes.html'))
+);
+
+//API service for note manipulation
+
+    //Get database notes
+app.get('/api/notes', (req, res) => {
+    const notes = JSON.parse(fs.readFileSync(notesDb, 'utf8'))
+    res.json(notes)
+}
+);
+
+
+
+
+
