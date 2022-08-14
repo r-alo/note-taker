@@ -33,6 +33,18 @@ app.get('/api/notes', (req, res) => {
 }
 );
 
+    //Post new notes
+app.post('/api/notes', (req, res) => {
+    const notes = JSON.parse(fs.readFileSync(notesDb, 'utf8'));
+    const note = req.body;
+    console.log(note);
+    note.id = notes.length + 1;
+    notes.push(note);
+    fs.writeFileSync(notesDb, JSON.stringify(notes));
+    res.json(notes)
+}
+);
+
 
 
 
